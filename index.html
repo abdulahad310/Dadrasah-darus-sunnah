@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#064326">
+<title>মাদ্রাসা দারুস সুন্নাহ | বিদায়ী ব্যাচ কার্ড</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--forest:#063f26;--green:#086239;--green2:#0d7544;--gold:#d7b65b;--gold2:#f0d98e;--cream:#fff9e9;--ink:#173b29}
+*{box-sizing:border-box}
+body{margin:0;background:#e9eee8;color:#1c3024;font-family:"Noto Sans Bengali",sans-serif}
+header{background:linear-gradient(120deg,#04351f,#0b6339);color:#fff;padding:15px 18px;text-align:center}
+header strong{display:block;font-size:18px;letter-spacing:.1px}
+header span{font-size:12px;color:#e8d99e}
+main{width:min(1160px,100%);margin:22px auto;padding:0 14px;display:grid;grid-template-columns:320px minmax(0,1fr);gap:18px;align-items:start}
+.panel{background:#fff;border:1px solid #dce5dc;border-radius:16px;padding:17px;box-shadow:0 8px 26px #183a2410}
+.panel h2{font-size:18px;color:var(--forest);margin:0 0 13px}
+label{display:block;font-size:13px;font-weight:700;margin:12px 0 5px}
+input{width:100%;padding:10px 11px;border:1px solid #cbd8cd;border-radius:9px;font:inherit;font-size:14px;background:#fff;color:#20372a}
+input:focus{outline:2px solid #d8c27d;border-color:#a98a36}
+input[type=file]{font-size:12px;padding:8px}
+input[type=range]{padding:0;accent-color:var(--green)}
+small,.hint{display:block;color:#728076;font-size:11px;line-height:1.7;margin-top:4px}
+.actions{display:flex;gap:9px;margin-top:17px}
+button{border:0;border-radius:9px;padding:11px 13px;font:700 14px "Noto Sans Bengali",sans-serif;cursor:pointer}
+.primary{background:linear-gradient(120deg,#0a7040,#064326);color:white;flex:1}
+.secondary{background:#f1f3eb;color:#31543a}
+.preview-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
+.preview-head h2{margin:0}
+.preview-head span{font-size:11px;color:#68776d}
+.preview-wrap{padding:12px;background:#e8ece5;border-radius:12px}
+canvas{display:block;width:100%;height:auto;aspect-ratio:4/5;background:#fff9e9;border-radius:5px;box-shadow:0 9px 26px #14291b24}
+.note{font-size:11px;line-height:1.8;color:#66756a;margin:12px 2px 0}
+@media(max-width:800px){main{grid-template-columns:1fr}.preview-panel{order:-1}.panel{padding:14px}}
+</style>
+</head>
+<body>
+<header><strong>বিদায়ী ব্যাচ স্মারক কার্ড মেকার</strong><span>প্রিমিয়াম এমারেল্ড · গোল্ড · ৪:৫ পোর্ট্রেট ডিজাইন</span></header>
+<main>
+<section class="panel">
+  <h2>শিক্ষার্থীর তথ্য</h2>
+  <label for="studentName">শিক্ষার্থীর নাম</label><input id="studentName" value="মোঃ আব্দুল আহাদ">
+  <label for="fatherName">পিতার নাম</label><input id="fatherName" value="মোঃ মাসুদ রানা">
+  <label for="village">গ্রাম</label><input id="village" value="মুন্সীগঞ্জড়া">
+  <label for="thana">থানা</label><input id="thana" value="ভোলাহাট">
+  <label for="district">জেলা</label><input id="district" value="চাঁপাইনবাবগঞ্জ">
+  <label for="phone">মোবাইল নম্বর</label><input id="phone" value="01762062310" inputmode="tel">
+  <label for="studentPhoto">শিক্ষার্থীর ছবি আপলোড</label><input id="studentPhoto" type="file" accept="image/*">
+  <label for="photoZoom">ছবির জুম</label><input id="photoZoom" type="range" min="1" max="1.8" value="1" step=".01">
+  <small>ছবি আপলোডের পর জুম নিয়ন্ত্রণ করে মুখ ও কাঁধ সুন্দরভাবে ফ্রেমে বসান।</small>
+  <div class="actions"><button class="primary" id="downloadBtn">PNG ডাউনলোড</button><button class="secondary" id="resetBtn" type="button">রিসেট</button></div>
+  <p class="note">স্থায়ী অংশ: মাদ্রাসার নাম, ঠিকানা, লোগো ও ভবনের ছবি। এগুলো পরিবর্তনের কোনো আপলোড বা এডিট অপশন রাখা হয়নি। শুধু শিক্ষার্থীর তথ্য ও ছবি বদলানো যাবে।</p>
+</section>
+<section class="panel preview-panel">
+  <div class="preview-head"><h2>কার্ডের প্রিভিউ</h2><span>১০৮০ × ১৩৫০ px · ৪:৫</span></div>
+  <div class="preview-wrap"><canvas id="poster" width="1080" height="1350"></canvas></div>
+  <p class="note">ডাউনলোড করা PNG ফাইলটি ফেসবুকে সরাসরি পোস্ট করা যাবে। সর্বোচ্চ মানের জন্য মূল রেজল্যুশনেই এক্সপোর্ট হবে।</p>
+</section>
+</main>
+<script>
+const $=id=>document.getElementById(id), canvas=$('poster'),ctx=canvas.getContext('2d');
+const W=1080,H=1350;
+const initial={studentName:'মোঃ আব্দুল আহাদ',fatherName:'মোঃ মাসুদ রানা',village:'মুন্সীগঞ্জড়া',thana:'ভোলাহাট',district:'চাঁপাইনবাবগঞ্জ',phone:'01762062310'};
+const photo={img:null,zoom:1};
+const fixed={logo:new Image(),building:new Image()};
+fixed.logo.src='madrasa-logo.png';
+fixed.building.src='madrasa-building.jpg';
+fixed.logo.onload=draw;fixed.building.onload=draw;
+
+function roundRect(x,y,w,h,r,fill,stroke,lw=1){
+  ctx.beginPath();ctx.roundRect(x,y,w,h,r);
+  if(fill){ctx.fillStyle=fill;ctx.fill()}
+  if(stroke){ctx.lineWidth=lw;ctx.strokeStyle=stroke;ctx.stroke()}
+}
+function textFit(value,x,y,maxWidth,size,color,weight=700,align='left'){
+  ctx.save();ctx.textAlign=align;ctx.textBaseline='middle';
+  let s=size;ctx.fillStyle=color;
+  ctx.font=`${weight} ${s}px "Noto Sans Bengali",sans-serif`;
+  while(ctx.measureText(String(value)).width>maxWidth&&s>16){s-=1;ctx.font=`${weight} ${s}px "Noto Sans Bengali",sans-serif`}
+  ctx.fillText(String(value),x,y);ctx.restore();
+}
+function imageCover(img,x,y,w,h,zoom=1,radius=0){
+  if(!img||!img.complete||!img.naturalWidth)return;
+  const base=Math.max(w/img.width,h/img.height),scale=base*zoom;
+  const sw=w/scale,sh=h/scale,sx=(img.width-sw)/2,sy=(img.height-sh)/2;
+  ctx.save();ctx.beginPath();ctx.roundRect(x,y,w,h,radius);ctx.clip();
+  ctx.drawImage(img,sx,sy,sw,sh,x,y,w,h);ctx.restore();
+}
+function imageContain(img,x,y,w,h){
+  if(!img||!img.complete||!img.naturalWidth)return;
+  const s=Math.min(w/img.width,h/img.height),iw=img.width*s,ih=img.height*s;
+  ctx.drawImage(img,x+(w-iw)/2,y+(h-ih)/2,iw,ih);
+}
+function drawPatternBorder(){
+  // Fine double-line frame with understated geometric corner ornaments.
+  roundRect(15,15,1050,1320,27,null,'#d7b65b',5);
+  roundRect(27,27,1026,1296,21,null,'#f0d98e',2);
+  ctx.save();ctx.strokeStyle='#c9a64c';ctx.lineWidth=3;
+  [[55,55,1,1],[1025,55,-1,1],[55,1295,1,-1],[1025,1295,-1,-1]].forEach(([x,y,sx,sy])=>{
+    ctx.save();ctx.translate(x,y);ctx.scale(sx,sy);
+    ctx.beginPath();ctx.moveTo(0,48);ctx.lineTo(0,12);ctx.lineTo(12,0);ctx.lineTo(48,0);
+    ctx.moveTo(8,38);ctx.lineTo(8,16);ctx.lineTo(16,8);ctx.lineTo(38,8);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(24,12);ctx.lineTo(36,24);ctx.lineTo(24,36);ctx.lineTo(12,24);ctx.closePath();ctx.stroke();
+    ctx.restore();
+  });ctx.restore();
+}
+function draw(){
+  ctx.clearRect(0,0,W,H);
+  const bg=ctx.createLinearGradient(0,0,W,H);bg.addColorStop(0,'#fffdf5');bg.addColorStop(.55,'#fff9e9');bg.addColorStop(1,'#f4edda');
+  ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);drawPatternBorder();
+
+  // Header: permanent institution name, address, emblem and building.
+  const head=ctx.createLinearGradient(0,40,0,300);head.addColorStop(0,'#064a2c');head.addColorStop(1,'#032f1c');
+  roundRect(43,43,994,258,25,head,'#d7b65b',4);
+  // restrained gold ornament line
+  ctx.strokeStyle='#d7b65b';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(80,158);ctx.lineTo(1000,158);ctx.stroke();
+  textFit('মাদ্রাসা দারুস সুন্নাহ মিরপুর, ঢাকা।',540,91,890,43,'#fff9e9',800,'center');
+  textFit('বাসা: ৬২৮, রোড: ৩, ব্লক: খ, মিরপুর ১২, ঢাকা ১২১৬।',540,132,880,23,'#f0d98e',600,'center');
+  roundRect(69,178,190,96,12,'#fffdf6','#d7b65b',3);
+  imageContain(fixed.logo,77,183,174,86);
+  roundRect(276,178,735,96,12,'#fffdf6','#d7b65b',3);
+  imageCover(fixed.building,282,184,723,84,1,8);
+
+  // Batch title on a refined green-and-gold plaque.
+  roundRect(74,333,932,142,29,'#d7b65b');
+  roundRect(82,341,916,126,23,'#075a35');
+  textFit('১১তম বিদায়ী ব্যাচ',540,405,850,76,'#fff9e9',900,'center');
+  textFit('দাওরায়ে হাদিস (মাস্টার্স) ২০২৬ ইং',540,523,850,38,'#064b2b',800,'center');
+  ctx.strokeStyle='#c9a64c';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(205,560);ctx.lineTo(875,560);ctx.stroke();
+  ctx.fillStyle='#c9a64c';ctx.beginPath();ctx.arc(540,560,5,0,Math.PI*2);ctx.fill();
+
+  // Left portrait block.
+  roundRect(55,592,455,604,22,'#fffdf6','#c9a64c',5);
+  roundRect(67,604,431,580,15,'#0a4d2d','#0a4d2d',1);
+  if(photo.img)imageCover(photo.img,76,613,413,562,photo.zoom,9);
+  else{
+    roundRect(76,613,413,562,9,'#e8eee4');
+    textFit('শিক্ষার্থীর ছবি',282,894,350,32,'#66806b',700,'center');
+  }
+
+  // Right profile panel.
+  roundRect(535,592,490,604,22,'#fffdf6','#d8c27c',3);
+  roundRect(558,614,444,72,17,'#075a35');
+  textFit('পরিচিতি',780,650,390,39,'#fff9e9',800,'center');
+  const rows=[['নাম',$('studentName').value],['পিতা',$('fatherName').value],['গ্রাম',$('village').value],['থানা',$('thana').value],['জেলা',$('district').value]];
+  const start=704,rowH=68,gap=9;
+  rows.forEach((r,i)=>{
+    const y=start+i*(rowH+gap);
+    roundRect(558,y,444,rowH,13,i%2===0?'#f0f2df':'#f8f5e9','#e5e0c9',1);
+    // gold medallion with a simple star motif
+    ctx.fillStyle='#075a35';ctx.beginPath();ctx.arc(594,y+34,22,0,Math.PI*2);ctx.fill();
+    textFit(['১','২','৩','৪','৫'][i],594,y+34,32,20,'#f0d98e',800,'center');
+    textFit(r[0]+' :',632,y+34,92,24,'#31543a',700,'left');
+    textFit(r[1]||'—',744,y+34,244,24,'#183b29',700,'left');
+  });
+  roundRect(558,1093,444,76,15,'#06472a','#d7b65b',2);
+  textFit('☎',592,1131,36,27,'#f0d98e',800,'center');
+  textFit($('phone').value||'মোবাইল নম্বর',626,1131,350,29,'#fff9e9',800,'left');
+
+  // Footer band and elegant divider.
+  ctx.fillStyle='#043d24';ctx.beginPath();ctx.moveTo(0,1231);ctx.quadraticCurveTo(250,1196,540,1230);ctx.quadraticCurveTo(825,1264,1080,1225);ctx.lineTo(1080,1350);ctx.lineTo(0,1350);ctx.closePath();ctx.fill();
+  ctx.strokeStyle='#d7b65b';ctx.lineWidth=7;ctx.beginPath();ctx.moveTo(0,1231);ctx.quadraticCurveTo(250,1196,540,1230);ctx.quadraticCurveTo(825,1264,1080,1225);ctx.stroke();
+  textFit('জ্ঞান হোক জীবনের আলো,',540,1287,820,35,'#fff9e9',700,'center');
+  textFit('আখিরাত হোক লক্ষ্য।',540,1327,820,30,'#f0d98e',600,'center');
+}
+function loadStudent(file){
+  if(!file)return;
+  if(!file.type.startsWith('image/')){alert('অনুগ্রহ করে একটি ছবি নির্বাচন করুন।');return}
+  const url=URL.createObjectURL(file),img=new Image();
+  img.onload=()=>{photo.img=img;draw();URL.revokeObjectURL(url)};
+  img.onerror=()=>{URL.revokeObjectURL(url);alert('ছবিটি পড়া যাচ্ছে না। অন্য ছবি দিন।')};
+  img.src=url;
+}
+$('studentPhoto').addEventListener('change',e=>loadStudent(e.target.files?.[0]));
+$('photoZoom').addEventListener('input',e=>{photo.zoom=Number(e.target.value);draw()});
+['studentName','fatherName','village','thana','district','phone'].forEach(id=>$(id).addEventListener('input',draw));
+$('downloadBtn').addEventListener('click',async()=>{
+  if(document.fonts?.ready)await document.fonts.ready;
+  draw();const a=document.createElement('a');a.download='madrasa-farewell-card.png';a.href=canvas.toDataURL('image/png');a.click();
+});
+$('resetBtn').addEventListener('click',()=>{
+  Object.entries(initial).forEach(([id,value])=>$(id).value=value);
+  $('studentPhoto').value='';$('photoZoom').value='1';photo.img=null;photo.zoom=1;draw();
+});
+if(document.fonts?.ready)document.fonts.ready.then(draw);else draw();
+</script>
+</body>
+</html>
